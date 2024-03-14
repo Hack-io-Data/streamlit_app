@@ -28,7 +28,7 @@ if upload_file is not None:
         df.drop('Unnamed: 0', axis=1, inplace=True)
     
     st.write("archivo subido")
-    st.display_file(upload_file)
+    st.display_file(df)
     #list(df.columns)
 
 
