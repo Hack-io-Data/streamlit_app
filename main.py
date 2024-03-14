@@ -24,6 +24,9 @@ upload_file = st.file_uploader('Sube Archivo', type=['csv'])
 
 if upload_file is not None:
     df = pd.read_csv(upload_file)
+    if 'Unnamed: 0' in df.columns:
+        df.drop('Unnamed: 0', axis=1, inplace=True)
+    
     st.write("archivo subido")
     #list(df.columns)
 
