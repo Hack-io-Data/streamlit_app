@@ -15,7 +15,7 @@ from pycaret.regression import evaluate_model
 # Aplicacion 
 # ------------------------------------------------------------------------------
 import streamlit as st
-from streamlit_dynamic_filters import DynamicFilters
+#from streamlit_dynamic_filters import DynamicFilters
 # %%
 st.title('Comprobacion de metricas')
 
