@@ -56,32 +56,16 @@ if upload_file is not None:
             df_test = df[-20:]
 
             # generamos objeto de experimento
-            exp1 = RegressionExperiment()
-            exp1.setup(df_train, ignore_features=ignorar, target=objetivo, 
-                        session_id=42, train_size=0.7, 
-                        categorical_features=categoricas, numeric_features=numericas)
+            s = setup(df_train, target='customer_lifetime_value')
 
+            # Crear un modelo Random Forest para regresión
+            model_rf = create_model('rf')
 
-            # seleccionamos el mejor modelo 
-            top1_exp1 = exp1.compare_models(n_select=1)
+            # Hacer predicciones en el conjunto de datos
+            predictions = predict_model(model_rf, data=df_test)
 
-            # entrenamos el modelo 
-            modelo_final = exp1.create_model(top1_exp1)
-
-
-            # guardamos el modelo 
-            exp1.save_model(modelo_final, 'output/my_pycaret_regression')
-
-            # Cargamos el modelo
-            my_winning_regressor = load_model('output/my_pycaret_regression')
-            s = setup(data = df_test,  target = 'customer_lifetime_value')
-
-            # Crear un modelo 
-            modelo = create_model(my_winning_regressor)
-
-            # Predicciones
-            pred = predict_model(my_winning_regressor, data=df_train)
             result = pull()
+            print(result['RMSE'][0])
 
             # Metricas
             metrica = result['RMSE']
