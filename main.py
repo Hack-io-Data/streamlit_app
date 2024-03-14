@@ -20,7 +20,7 @@ import streamlit as st
 st.title('Comprobacion de metricas')
 
 # creamoms un boton para cargar el Los datos
-upload_file = st.file_uploader('Sube Archivo', type=['csv'])
+upload_file = st.file_uploader('Sube Archivo', type=['csv','xlsx'])
 
 if upload_file is not None:
     df = pd.read_csv(upload_file)
@@ -28,6 +28,7 @@ if upload_file is not None:
         df.drop('Unnamed: 0', axis=1, inplace=True)
     
     st.write("archivo subido")
+    st.display_file(upload_file)
     #list(df.columns)
 
 
